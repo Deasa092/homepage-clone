@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: theme("fontFamily.poppins");
+  }
+}
+
+@layer components {
+  .btn-hover-soft {
+    @apply px-3 py-2 rounded-md hover:bg-gray-100 transition-colors;
+  }
+  /* HEADER */
+  .header-wrapper {
+    @apply bg-white sticky top-0 z-50 border-b px-3 sm:px-4 md:px-6;
+  }
+
+  .header-main {
+    @apply mx-auto flex items-center h-[52px] sm:h-[56px] md:h-[64px];
+  }
+
+  .header-logo {
+    @apply text-tokopedia text-xl sm:text-2xl md:text-3xl
+           font-semibold leading-none cursor-pointer flex-shrink-0;
+  }
+
+  .search-wrapper {
+    @apply relative flex-1 mx-2 sm:mx-3 md:mx-4;
+  }
+
+  .search-input {
+    @apply w-full border border-gray-300 rounded-lg
+           focus:outline-none focus:ring-1 focus:ring-tokopedia;
+  }
+
+  /* ICON GROUP */
+  .header-actions {
+    @apply flex items-center gap-1 text-gray-700 flex-shrink-0;
+  }
+
+  .header-divider {
+    @apply h-6 w-px bg-gray-300;
+  }
+
+  /* USER */
+  .avatar {
+    @apply w-8 h-8 rounded-full bg-blue-500
+           flex items-center justify-center
+           text-white text-sm;
+  }
+
+  .location-text {
+    @apply text-[10px] font-light flex gap-1 items-center;
+  }
+
+  .btn-hover-hide {
+    @apply absolute top-1/2 z-10
+            -translate-y-1/2
+            rounded-full border bg-white p-1
+            opacity-0 transition
+            group-hover:opacity-100
+            disabled:cursor-not-allowed
+            disabled:opacity-0;
+  }
+
+  .border-card {
+    @apply rounded border border-gray-100;
+  }
+}
