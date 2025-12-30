@@ -15,7 +15,7 @@ const CategoryCard = ({ category, onSelect }: Props) => {
                  hover:shadow-md hover:border-green-500
                  transition"
     >
-      <div className="text-3xl mb-2">{category.icon}</div>
+      <div className="text-3xl  mb-2">{category.icon}</div>
       <span className="text-sm font-medium text-gray-700 text-center">
         {category.name}
       </span>

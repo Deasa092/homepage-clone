@@ -1,6 +1,6 @@
 import { FiMinus, FiPlus } from "react-icons/fi";
 import type { Product } from "../services/product.service";
-import { UseWishlist } from "../hook/Context";
+import { useWishlist } from "../hook/custom/wishlist/useWishlist";
 
 interface Props {
   product: Product;
@@ -12,7 +12,7 @@ const WishlistProduct = ({ product }: Props) => {
     increaseQty,
     decreaseQty,
     toggleWishlist,
-  } = UseWishlist();
+  } = useWishlist();
 
   const qty = quantities[product.id] ?? 1;
 

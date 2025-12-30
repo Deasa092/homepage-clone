@@ -4,10 +4,10 @@ import IconButton from "../components/ButtonIcon";
 import ButtonText from "../components/ButtonText";
 import { CiLocationOn } from "react-icons/ci";
 import Dropdown from "../components/Dropdown";
-import { UseWishlist } from "../hook/Context";
 import { categories } from "../assets/data/categories";
 import CartList from "./CartList";
 import Button from "../components/Button";
+import { useWishlist } from "../hook/custom/wishlist/useWishlist";
 
 type HeaderProps = {
   search: string;
@@ -22,7 +22,7 @@ export default function Header({
   notifCount,
   onPage,
 }: HeaderProps) {
-  const { wishlist } = UseWishlist();
+  const { wishlist } = useWishlist();
 
   return (
     <header className="header-wrapper">

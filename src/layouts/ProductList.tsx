@@ -5,7 +5,7 @@ import {
   searchProducts,
   type Product,
 } from "../services/product.service";
-import { UseWishlist } from "../hook/Context";
+import { useWishlist } from "../hook/custom/wishlist/useWishlist";
 
 type ProductProps = {
   search: string;
@@ -13,7 +13,7 @@ type ProductProps = {
 
 export default function ProductList({ search }: ProductProps) {
   const [products, setProducts] = useState<Product[]>([]);
-  const { toggleWishlist, isWishlisted } = UseWishlist();
+  const { toggleWishlist, isWishlisted } = useWishlist();
 
   useEffect(() => {
     if (search) {

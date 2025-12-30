@@ -1,8 +1,8 @@
 import WishlistProduct from "../components/WishlistProduct";
-import { UseWishlist } from "../hook/Context";
+import { useWishlist } from "../hook/custom/wishlist/useWishlist";
 
 const CartList = () => {
-  const { wishlist } = UseWishlist();
+  const { wishlist } = useWishlist();
 
   return (
     <div className="w-full bg-white">

@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { UseWishlist } from "../hook/Context";
 import PopupFeedback from "../components/PopupFeedback";
 import PaymentOption from "../components/PaymentOption";
 import type { TagihanData } from "./Tagihan";
+import { useWishlist } from "../hook/custom/wishlist/useWishlist";
 
 type ProductItem = {
   id: number;
@@ -23,7 +23,7 @@ type PaymentMethod = "transfer" | "ewallet" | "cod";
 type Feedback = "none" | "success" | "error";
 
 export default function Payment({ onBack, onSuccess, payload }: Props) {
-  const { wishlist } = UseWishlist();
+  const { wishlist } = useWishlist();
   const [method, setMethod] = useState<PaymentMethod>("transfer");
   const [feedback, setFeedback] = useState<Feedback>("none");
 

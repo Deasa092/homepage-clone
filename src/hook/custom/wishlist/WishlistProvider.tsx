@@ -1,26 +1,14 @@
-import { createContext, useContext, useState } from "react";
-import type { Product } from "../services/product.service";
+import { useState } from "react";
+import type { Product } from "../../../services/product.service";
+import { WishlistContext, type WishlistContextType } from "./WishlistContext";
 
-
-type ContextType = {
-  wishlist: Product[];
-  quantities: Record<number, number>;
-  toggleWishlist: (product: Product) => void;
-  isWishlisted: (id: number) => boolean;
-  increaseQty: (id: number) => void;
-  decreaseQty: (id: number) => void;
-};
-
-const Context = createContext<ContextType | null>(null);
-
-export function ContextProvider({ children }: { children: React.ReactNode }) {
+export function WishlistProvier({ children }: { children: React.ReactNode }) {
   const [wishlist, setWishlist] = useState<Product[]>([]);
   const [quantities, setQuantities] = useState<Record<number, number>>({});
 
-  const toggleWishlist = (product: Product) => {
+  const toggleWishlist: WishlistContextType["toggleWishlist"] = (product) => {
     setWishlist((prev) => {
       const exists = prev.some((p) => p.id === product.id);
-
       if (exists) {
         setQuantities((q) => {
           const copy = { ...q };
@@ -50,11 +38,10 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
     });
   };
 
-  const isWishlisted = (id: number) =>
-    wishlist.some((p) => p.id === id);
+  const isWishlisted = (id: number) => wishlist.some((p) => p.id === id);
 
   return (
-    <Context.Provider
+    <WishlistContext.Provider
       value={{
         wishlist,
         quantities,
@@ -65,14 +52,6 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
       }}
     >
       {children}
-    </Context.Provider>
+    </WishlistContext.Provider>
   );
-}
-
-export function UseWishlist() {
-  const ctx = useContext(Context);
-  if (!ctx) {
-    throw new Error("UseWishlist must be used inside ContextProvider");
-  }
-  return ctx;
 }

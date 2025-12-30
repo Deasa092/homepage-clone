@@ -2,12 +2,12 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
-import { ContextProvider } from "./hook/Context.tsx";
+import AppProvider from "./hook/custom/AppProvider.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <ContextProvider>
+    <AppProvider>
       <App />
-    </ContextProvider>
+    </AppProvider>
   </StrictMode>
 );

@@ -1,5 +1,5 @@
 import Button from "../components/Button";
-import { UseWishlist } from "../hook/Context";
+import { useWishlist } from "../hook/custom/wishlist/useWishlist";
 import type { Product } from "../services/product.service";
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default function Checkout({ onBack, onPay }: Props) {
-  const { wishlist } = UseWishlist();
+  const { wishlist } = useWishlist();
 
   const total = wishlist.reduce((sum, item) => {
     return sum + item.price;
