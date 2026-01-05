@@ -19,7 +19,7 @@ export default function PaymentCard({
 
   return (
     <Button
-      variant="card"
+      variant="custom"
       onClick={() => onSelect(value)}
       className={`
         flex w-full items-center justify-between
