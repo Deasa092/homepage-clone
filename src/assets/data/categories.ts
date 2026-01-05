@@ -1,7 +1,8 @@
+
 export interface Category {
   id: number;
   name: string;
-  icon: string;
+  icon: string
 }
 
 export const categories: Category[] = [
@@ -14,3 +15,4 @@ export const categories: Category[] = [
   { id: 7, name: "Hobi", icon: "🎮" },
   { id: 8, name: "Olahraga", icon: "⚽" },
 ];
+

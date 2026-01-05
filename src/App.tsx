@@ -8,8 +8,6 @@ import Payment from "./layouts/Payment";
 import Checkout from "./layouts/Checkout";
 import type { Product } from "./services/product.service";
 
-
-
 type PaymentPayload =
   | { mode: "tagihan"; data: TagihanData }
   | { mode: "produk"; data: Product[] };
@@ -22,7 +20,7 @@ export default function App() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 text-basic">
       <Header
         search={search}
         onSearch={setSearch}
@@ -33,7 +31,7 @@ export default function App() {
       {page === "home" && (
         <main className="bg-white p-4">
           <div className="mx-auto max-w-[1200px] px-4 py-4 border-card shadow">
-            <div className="flex gap-6">
+            <div className="md:flex gap-6 ">
               <Category onCategoryChange={() => console.log("test")} />
               <Tagihan
                 onPay={(data) => {
@@ -61,7 +59,7 @@ export default function App() {
           onPay={(data) => {
             setPaymentPayload({
               mode: "produk",
-              data
+              data,
             });
             setPage("payment");
           }}

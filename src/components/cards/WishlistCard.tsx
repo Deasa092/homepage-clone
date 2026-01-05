@@ -1,6 +1,6 @@
 import { FiMinus, FiPlus } from "react-icons/fi";
-import type { Product } from "../services/product.service";
-import { useWishlist } from "../hook/custom/wishlist/useWishlist";
+import type { Product } from "../../services/product.service";
+import { useWishlist } from "../../hook/custom/wishlist/useWishlist";
 
 interface Props {
   product: Product;
@@ -25,7 +25,7 @@ const WishlistProduct = ({ product }: Props) => {
       />
 
       <div className="flex-1">
-        <p className="line-clamp-1 text-sm font-medium">
+        <p className="line-clamp-1 text-basic font-medium">
           {product.title}
         </p>
 
@@ -46,7 +46,7 @@ const WishlistProduct = ({ product }: Props) => {
           <FiMinus size={12} />
         </button>
 
-        <span className="min-w-[16px] text-center text-sm">
+        <span className="min-w-[16px] text-center text-basic">
           {qty}
         </span>
 
@@ -58,7 +58,7 @@ const WishlistProduct = ({ product }: Props) => {
         </button>
       </div>
 
-      <p className="ml-2 text-sm font-semibold whitespace-nowrap">
+      <p className="ml-2 text-basic font-semibold whitespace-nowrap">
         Rp{(qty * product.price).toLocaleString("id-ID")}
       </p>
     </div>

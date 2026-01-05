@@ -1,8 +1,11 @@
 import { useState } from "react";
-import PopupFeedback from "../components/PopupFeedback";
-import PaymentOption from "../components/PaymentOption";
 import type { TagihanData } from "./Tagihan";
 import { useWishlist } from "../hook/custom/wishlist/useWishlist";
+import Popup from "../components/ui/Popup";
+import PaymentCard from "../components/cards/PaymentCard";
+import { paymentMethods } from "../assets/data/paymentMethod";
+import Button from "../components/ui/Button";
+import PaymentSummary from "../components/modules/payment/PaymentSummary";
 
 type ProductItem = {
   id: number;
@@ -30,99 +33,69 @@ export default function Payment({ onBack, onSuccess, payload }: Props) {
   const total = wishlist.reduce((sum, item) => sum + item.price, 0);
 
   const handlePay = () => {
+    console.log(method);
+
     const success = Math.random() > 0.5;
     setFeedback(success ? "success" : "error");
   };
   const isTagihan = payload.mode === "tagihan";
+  const handleBack = () => {
+    onBack(isTagihan ? "home" : "checkout");
+  };
+
   return (
     <>
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        <button
-          onClick={() => (isTagihan ? onBack("home") : onBack("checkout"))}
-          className="mb-4 text-sm text-green-600"
+      <div className="max-w-4xl mx-auto p-4">
+        <Button
+          variant="text"
+          onClick={handleBack}
+          className="mb-1 md:mb-2 text-tokopedia"
         >
           ← Kembali ke {isTagihan ? "Home" : "Checkout"}
-        </button>
+        </Button>
 
-        <h1 className="mb-6 text-2xl font-semibold">Pembayaran</h1>
+        <h1 className="mb-2 md:mb-4 text-title font-semibold">Pembayaran</h1>
 
         <div className="grid gap-6 md:grid-cols-3">
           {/* LEFT */}
           <div className="md:col-span-2 space-y-6">
             <div className="rounded-xl border bg-white p-4">
-              <h2 className="mb-3 text-lg font-semibold">Metode Pembayaran</h2>
-
+              <h2 className="mb-3 text-subtitle font-semibold">
+                Metode Pembayaran
+              </h2>
               <div className="space-y-3">
-                <PaymentOption
-                  label="Transfer Bank"
-                  value="transfer"
-                  selected={method}
-                  onSelect={setMethod}
-                />
-
-                <PaymentOption
-                  label="E-Wallet"
-                  value="ewallet"
-                  selected={method}
-                  onSelect={setMethod}
-                />
-
-                <PaymentOption
-                  label="COD (Bayar di Tempat)"
-                  value="cod"
-                  selected={method}
-                  onSelect={setMethod}
-                />
+                {paymentMethods.map((item) => (
+                  <PaymentCard
+                    key={item.value}
+                    label={item.label}
+                    value={item.value}
+                    selected={method}
+                    onSelect={setMethod}
+                  />
+                ))}
               </div>
             </div>
           </div>
 
           {/* RIGHT */}
-          <div className="h-fit rounded-xl border bg-white p-4">
-            <h2 className="mb-3 text-lg font-semibold">Ringkasan Pembayaran</h2>
-
-            <div className="space-y-2 text-sm">
-              {isTagihan ? (
-                <div key={payload.data.phone} className="flex justify-between">
-                  <span className="line-clamp-1">{payload.data.type.toUpperCase()}</span>
-                  <span>Rp{payload.data.price.toLocaleString("id-ID")}</span>
-                </div>
-              ) : (
-                wishlist.map((item) => (
-                  <div key={item.id} className="flex justify-between">
-                    <span className="line-clamp-1">{item.title}</span>
-                    <span>Rp{item.price.toLocaleString("id-ID")}</span>
-                  </div>
-                ))
-              )}
-            </div>
-
-            <div className="my-4 border-t" />
-
-            <div className="flex justify-between font-semibold">
-              <span>Total</span>
-              <span>
-                Rp
-                {isTagihan
-                  ? payload.data.price.toLocaleString("id-ID") 
-                  : total.toLocaleString("id-ID")}
-              </span>
-            </div>
-
-            <button
-              onClick={handlePay}
-              className="
-                mt-4 w-full rounded-lg py-2 text-sm font-semibold
-                bg-green-600 text-white
-              "
-            >
-              Bayar
-            </button>
-          </div>
+          {isTagihan ? (
+              <PaymentSummary
+                mode="tagihan"
+                data={payload.data}
+                onPay={handlePay}
+              />
+            ) : (
+              <PaymentSummary
+                mode="produk"
+                items={wishlist}
+                total={total}
+                onPay={handlePay}
+              />
+            )}
         </div>
       </div>
 
-      <PopupFeedback
+      <Popup
         open={feedback !== "none"}
         variant={feedback === "success" ? "success" : "error"}
         title={

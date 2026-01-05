@@ -10,7 +10,7 @@
 
 @layer components {
   .btn-hover-soft {
-    @apply px-3 py-2 rounded-md hover:bg-gray-100 transition-colors;
+    @apply rounded-md hover:bg-gray-100 transition-colors;
   }
   /* HEADER */
   .header-wrapper {
@@ -48,11 +48,7 @@
   .avatar {
     @apply w-8 h-8 rounded-full bg-blue-500
            flex items-center justify-center
-           text-white text-sm;
-  }
-
-  .location-text {
-    @apply text-[10px] font-light flex gap-1 items-center;
+           text-white text-basic;
   }
 
   .btn-hover-hide {
@@ -67,5 +63,30 @@
 
   .border-card {
     @apply rounded border border-gray-100;
+  }
+  .text-super {
+    @apply text-3xl lg:text-4xl;
+  }
+  .text-title {
+    @apply text-base sm:text-lg md:text-xl;
+  }
+  .text-subtitle {
+    @apply text-sm sm:text-base md:text-base font-semibold;
+  }
+  .text-basic {
+    @apply text-xs lg:text-sm;
+  }
+  .text-small {
+    @apply text-[9px] md:text-[11px];
+  }
+  .disabled-btn {
+    @apply bg-gray-200 text-gray-400;
+  }
+  .card-clickable {
+    @apply border border-gray-200 bg-white rounded-lg
+         hover:border-tokopedia hover:shadow-md transition;
+  }
+  .hoverable-btn {
+    @apply absolute -translate-y-1/2 btn-hover-hide z-10 hover:text-tokopedia
   }
 }

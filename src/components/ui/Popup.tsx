@@ -10,7 +10,7 @@ interface Props {
   confirmText?: string;
 }
 
-export default function PopupFeedback({
+export default function Popup({
   open,
   variant,
   title,
@@ -44,7 +44,7 @@ export default function PopupFeedback({
         <h2 className="mb-2 text-lg font-semibold">{title}</h2>
 
         {description && (
-          <p className="mb-6 text-sm text-gray-500">{description}</p>
+          <p className="mb-6 text-basic text-gray-500">{description}</p>
         )}
 
         {onConfirm ? (
@@ -52,7 +52,7 @@ export default function PopupFeedback({
             <button
               onClick={onConfirm}
               className={`
-                w-full rounded-lg py-2 text-sm font-semibold text-white
+                w-full rounded-lg py-2 text-basic font-semibold text-white
                 ${isSuccess ? "bg-green-600" : "bg-red-600"}
               `}
             >
@@ -63,7 +63,7 @@ export default function PopupFeedback({
           <button
             onClick={onClose}
             className={`
-              w-full rounded-lg py-2 text-sm font-semibold text-white
+              w-full rounded-lg py-2 text-basic font-semibold text-white
               ${isSuccess ? "bg-green-600" : "bg-red-600"}
             `}
           >

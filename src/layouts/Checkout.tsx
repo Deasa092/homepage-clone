@@ -1,4 +1,4 @@
-import Button from "../components/Button";
+import Button from "../components/ui/Button";
 import { useWishlist } from "../hook/custom/wishlist/useWishlist";
 import type { Product } from "../services/product.service";
 
@@ -16,7 +16,7 @@ export default function Checkout({ onBack, onPay }: Props) {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
-      <button onClick={onBack} className="mb-4 text-sm text-green-600">
+      <button onClick={onBack} className="mb-4 text-basic text-green-600">
         ← Kembali ke Home
       </button>
       <h1 className="mb-6 text-2xl font-semibold">Checkout</h1>
@@ -40,7 +40,7 @@ export default function Checkout({ onBack, onPay }: Props) {
 
               <div className="flex-1">
                 <p className="font-medium">{product.title}</p>
-                <p className="text-sm text-gray-500">{product.category}</p>
+                <p className="text-basic text-gray-500">{product.category}</p>
               </div>
 
               <p className="font-semibold whitespace-nowrap">
@@ -53,7 +53,7 @@ export default function Checkout({ onBack, onPay }: Props) {
         <div className="rounded-lg border bg-white p-4 h-fit">
           <h2 className="mb-4 text-lg font-semibold">Ringkasan Belanja</h2>
 
-          <div className="space-y-2 text-sm">
+          <div className="space-y-2 text-basic">
             <div className="flex justify-between">
               <span>Total Item</span>
               <span>{wishlist.length}</span>

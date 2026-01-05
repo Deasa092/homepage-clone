@@ -1,35 +1,17 @@
-import {
-  FiGrid,
-  FiSmartphone,
-  FiFileText,
-  FiHeadphones,
-  FiHeart,
-  FiDollarSign,
-  FiMonitor,
-} from "react-icons/fi";
+import { shortcuts } from "../assets/data/shortcuts";
+import Button from "../components/ui/Button";
 
-type ShortcutItem = {
-  label: string;
-  icon: React.ReactNode;
-};
-
-const shortcuts: ShortcutItem[] = [
-  { label: "Kategori", icon: <FiGrid /> },
-  { label: "Handphone & Tablet", icon: <FiSmartphone /> },
-  { label: "Top-Up & Tagihan", icon: <FiFileText /> },
-  { label: "Elektronik", icon: <FiHeadphones /> },
-  { label: "Perawatan Hewan", icon: <FiHeart /> },
-  { label: "Keuangan", icon: <FiDollarSign /> },
-  { label: "Komputer & Laptop", icon: <FiMonitor /> },
-];
-
-const QuickShortcut = () => {
+const Shortcut = () => {
   return (
     <div className="w-full overflow-x-auto">
       <div className="flex gap-3 py-2">
         {shortcuts.map((item) => (
-          <button
+          <Button
             key={item.label}
+            icon={<item.icon/>}
+            size="md"
+            variant="secondary"
+            onClick={()=>console.log("Pilih :", item.label)            }
             className="
               flex shrink-0 items-center gap-2
               rounded-xl border border-gray-300
@@ -38,15 +20,12 @@ const QuickShortcut = () => {
               hover:bg-gray-50
             "
           >
-            <span className="text-lg text-green-600">
-              {item.icon}
-            </span>
             {item.label}
-          </button>
+          </Button>
         ))}
       </div>
     </div>
   );
 };
 
-export default QuickShortcut;
+export default Shortcut;
